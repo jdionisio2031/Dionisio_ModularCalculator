@@ -1,0 +1,49 @@
+try:
+    # Prompt the user for two numbers and convert inputs to floats
+    first_number = float(input("Enter the first number: "))
+    second_number = float(input("Enter the second number: "))
+except ValueError:
+    # Handle cases where the user inputs non-numeric characters
+    print("Invalid input. Please enter numerical values.")
+    return
+
+# Display the menu of available mathematical operations
+print("\nAvailable Operations:")
+print("1. Add (+)")
+print("2. Subtract (-)")
+print("3. Multiply (*)")
+print("4. Divide (/)")
+
+# Get the user's operation choice and strip any accidental whitespace
+choice = input("Choose an operation (1/2/3/4): ").strip()
+
+# Initialize variables to store the calculation outcome and the text symbol
+result = None
+operation_symbol = ""
+
+# Execute the corresponding function based on the user's choice
+if choice == "1":
+    result = add(first_number, second_number)
+    operation_symbol = "+"
+elif choice == "2":
+    result = subtract(first_number, second_number)
+    operation_symbol = "-"
+elif choice == "3":
+    result = multiply(first_number, second_number)
+    operation_symbol = "*"
+elif choice == "4":
+    result = divide(first_number, second_number)
+    operation_symbol = "/"
+else:
+    # Handle invalid menu selections
+    print("Invalid operation choice.")
+    return
+
+# Print the final calculation block
+print("\n--- Result ---")
+# If the result is a string (e.g., an error message like "Cannot divide by zero"), print it directly
+if isinstance(result, str):
+    print(result)
+else:
+    # Otherwise, display the formatted mathematical equation and answer
+    print(f"{first_number} {operation_symbol} {second_number} = {result}")
